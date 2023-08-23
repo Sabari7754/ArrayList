@@ -1,0 +1,56 @@
+import java.util.*;
+class Arraylist{
+   final static int startValue=4;
+  private int a[]=new int[startValue];
+  int size=0,capacity=startValue;
+  void add(int data){
+      if(size==capacity)
+      increase();
+      a[size++]=data;
+  }
+  void increase(){
+   //   a=new int[startValue*2];
+      a=Arrays.copyOf(a,capacity*2);
+      capacity=capacity*2;
+  }
+  void show(){
+    for(int i=0;i<size;i++)
+      System.out.print(a[i]+" ");
+    
+      System.out.println();
+  }
+    
+   void insert(int pos,int d){
+       if(size==capacity)
+       increase();
+       for(int i=size-1;i>=pos;i--)
+           a[i+1]=a[i];
+           a[pos]=d;
+           size++;
+   }
+   void delete(int pos){
+       for(int i=pos+1;i<size;i++){
+           a[i-1]=a[i];
+       }
+       size--;
+   }
+}
+public class Main
+{
+    public static void main(String[] args) {
+        Arraylist l1=new Arraylist();
+        l1.add(12);
+        l1.add(13);
+        l1.add(16);
+        l1.add(189);
+        l1.add(56);
+        l1.show();
+        l1.add(16);
+        l1.show();
+        l1.insert(3,1100);
+        l1.show();
+        l1.delete(2);
+        l1.show();
+        
+    }
+}
